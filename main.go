@@ -28,7 +28,7 @@ func main() {
 	case "open":
 		folderName := os.Args[2]
 		if err := folder.OpenFolderProject(folderName); err != nil {
-			log.Fatal(fmt.Sprintf("The Ring has betrayed us! %v", err))
+			log.Fatalf("The Ring has betrayed us! %v", err)
 		}
 	}
 }
@@ -47,15 +47,15 @@ func printUsage() {
 func changeToDefaultFolder(rootFolder string) {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatal(fmt.Sprintf("The paths are blocked! Like the Mines of Moria: %v\nTrace of shadow and flame:\n%s",
-			err, debug.Stack()))
+		log.Fatalf("The paths are blocked! Like the Mines of Moria: %v\nTrace of shadow and flame:\n%s",
+			err, debug.Stack())
 	}
 
 	baseFolder := filepath.Join(homeDir, rootFolder)
 
 	err = os.Chdir(baseFolder)
 	if err != nil {
-		log.Fatal(fmt.Sprintf("Failed to traverse to %s! As Gandalf said of Moria: %v\nTrace of shadow and flame:\n%s",
-			baseFolder, err, debug.Stack()))
+		log.Fatalf("Failed to traverse to %s! As Gandalf said of Moria: %v\nTrace of shadow and flame:\n%s",
+			baseFolder, err, debug.Stack())
 	}
 }
