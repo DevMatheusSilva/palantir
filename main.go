@@ -11,8 +11,7 @@ import (
 
 func main() {
 	if len(os.Args) < 3 {
-		printUsage()
-		os.Exit(1)
+		printUsageAndExit()
 	}
 
 	rootFolder := os.Getenv("PALANTIR_ROOT_FOLDER")
@@ -20,20 +19,24 @@ func main() {
 		log.Fatal("By the power of the Istari! The Palantír requires its sacred environment path (PALANTIR_ROOT_FOLDER) before you may gaze into its depths")
 	}
 
-	changeToDefaultFolder(rootFolder)
+	homeDir := changeToHomeFolder(rootFolder)
+
+	baseFolder := filepath.Join(homeDir, rootFolder)
 
 	command := os.Args[1]
 
 	switch command {
 	case "open":
 		folderName := os.Args[2]
-		if err := folder.OpenFolderProject(folderName); err != nil {
+		if err := folder.OpenFolderProject(folderName, baseFolder); err != nil {
 			log.Fatalf("The Ring has betrayed us! %v", err)
 		}
+	default:
+		printUsageAndExit()
 	}
 }
 
-func printUsage() {
+func printUsageAndExit() {
 	fmt.Println(`
     One Command to rule them all,
     One Path to find them,
@@ -42,20 +45,15 @@ func printUsage() {
 
     Usage: palantir <command> <folder_name>
     `)
+	os.Exit(1)
 }
 
-func changeToDefaultFolder(rootFolder string) {
+func changeToHomeFolder(rootFolder string) string {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatalf("The paths are blocked! Like the Mines of Moria: %v\nTrace of shadow and flame:\n%s",
 			err, debug.Stack())
 	}
 
-	baseFolder := filepath.Join(homeDir, rootFolder)
-
-	err = os.Chdir(baseFolder)
-	if err != nil {
-		log.Fatalf("Failed to traverse to %s! As Gandalf said of Moria: %v\nTrace of shadow and flame:\n%s",
-			baseFolder, err, debug.Stack())
-	}
+	return homeDir
 }

@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 )
 
-func OpenFolderProject(folderName string) error {
-	projectFolderPath, err := findProjectFolder(folderName)
+func OpenFolderProject(folderName string, baseFolder string) error {
+	projectFolderPath, err := findProjectFolder(folderName, baseFolder)
 	if err != nil {
 		return errors.Wrap(err, "The quest to find the project folder has failed!")
 	}
@@ -27,15 +27,10 @@ func OpenFolderProject(folderName string) error {
 	return nil
 }
 
-func findProjectFolder(folderName string) (string, error) {
-	currentDir, err := os.Getwd()
-	if err != nil {
-		return "", errors.Wrap(err, "Lost in the shadows! Cannot determine our current position in Middle-earth")
-	}
-
+func findProjectFolder(folderName string, baseFolder string) (string, error) {
 	var projectPath string
 
-	err = filepath.Walk(currentDir, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(baseFolder, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return errors.Wrapf(err, "The path %s is guarded by dark forces", path)
 		}
@@ -56,11 +51,11 @@ func findProjectFolder(folderName string) (string, error) {
 	})
 
 	if err != nil {
-		return "", errors.Wrapf(err, "The search party has failed! Could not locate %s in the realm of %s", folderName, currentDir)
+		return "", errors.Wrapf(err, "The search party has failed! Could not locate %s in the realm of %s", folderName, baseFolder)
 	}
 
 	if projectPath == "" {
-		return "", errors.Errorf("Not even the eyes of Legolas could find %s in the lands of %s", folderName, currentDir)
+		return "", errors.Errorf("Not even the eyes of Legolas could find %s in the lands of %s", folderName, baseFolder)
 	}
 
 	log.Printf("By the light of Eärendil! Project found at: %s\nSummoning the editor...", projectPath)
