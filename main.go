@@ -19,7 +19,7 @@ func main() {
 		log.Fatal("By the power of the Istari! The Palantír requires its sacred environment path (PALANTIR_ROOT_FOLDER) before you may gaze into its depths")
 	}
 
-	homeDir := changeToHomeFolder(rootFolder)
+	homeDir := changeToHomeFolder()
 
 	baseFolder := filepath.Join(homeDir, rootFolder)
 
@@ -48,7 +48,7 @@ func printUsageAndExit() {
 	os.Exit(1)
 }
 
-func changeToHomeFolder(rootFolder string) string {
+func changeToHomeFolder() string {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatalf("The paths are blocked! Like the Mines of Moria: %v\nTrace of shadow and flame:\n%s",
