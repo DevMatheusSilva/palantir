@@ -21,7 +21,7 @@ func OpenFolderProject(folderName string, baseFolder string) error {
 
 	cmd := exec.Command(path, projectFolderPath)
 	if err := cmd.Run(); err != nil {
-		return errors.Wrapf(err, "The gates of VS Code remain sealed at %s. Even speaking 'mellon' would not work\n", projectFolderPath)
+		return errors.Wrapf(err, "The gates of VS Code remain sealed at %s. Even speaking 'mellon' would not work", projectFolderPath)
 	}
 
 	return nil
