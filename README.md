@@ -1,90 +1,107 @@
-# 🔮 Palantír
+# 🔮 Palantír - The Seeing Stone
 
-Palantír é uma ferramenta mágica que ajuda você a abrir seus projetos diretamente no VSCode através do terminal, inspirada no universo do Senhor dos Anéis.
+![Palantír - The Seeing Stone](https://raw.githubusercontent.com/DevMatheusSilva/palantir/main/.github/assets/palantir.jpg)
 
-## 📋 Pré-requisitos
+*"A great seeing-stone to aid in your quest through the realms of code."*
 
-Antes de começar, você precisará ter instalado em sua máquina:
+Palantír is a mystical tool forged in the depths of Golang, empowering you to swiftly open your projects in VSCode through the terminal, much like the ancient seeing-stones of Middle-earth guided the wise.
 
-- [Go](https://golang.org/) (versão 1.25.1 ou superior)
-- [Visual Studio Code](https://code.visualstudio.com/)
+## � Prerequisites
 
-## 🚀 Instalação
+Before embarking on your journey, ensure you have these artifacts in your possession:
 
-1. Clone o repositório:
+- 🧙‍♂️ [Go](https://golang.org/) (version 1.25.1 or higher) - The language of power
+- ⚔️ [Visual Studio Code](https://code.visualstudio.com/) - Your trusty weapon in the battle against bugs
+
+## 🌟 Installation
+
+### The Path of the Wise
+
+1. First, summon the repository from the depths of GitHub:
+```bash
+git clone https://github.com/DevMatheusSilva/palantir.git
 ```
-bash git clone [https://github.com/DevMatheusSilva/palantir.git](https://github.com/DevMatheusSilva/palantir.git)
-``` 
 
-2. Entre no diretório do projeto:
+2. Enter the sacred grounds:
+```bash
+cd palantir
 ```
-bash cd palantir
-``` 
 
-3. Instale as dependências:
+3. Gather the ancient dependencies:
+```bash
+go mod download
 ```
-bash go mod download
-``` 
 
-4. Compile o projeto:
+4. Install the seeing-stone in your realm (this will place the executable in your Go workspace):
+```bash
+go install
 ```
-bash go build
-``` 
 
-## ⚙️ Configuração
-
-1. Configure a variável de ambiente `PALANTIR_ROOT_FOLDER`. Esta variável deve apontar para o diretório base onde seus projetos estão localizados:
-
-No Windows:
+5. Create a symbolic link to wield its power from anywhere (requires sudo):
+```bash
+sudo ln -s $GOPATH/bin/palantir /usr/local/bin/palantir
 ```
-bash set PALANTIR_ROOT_FOLDER=Projects
-``` 
 
-No Linux/MacOS:
+## 🗝️ Configuration
+
+Just as the Palantíri needed proper alignment to function, you must configure the sacred path:
+
+1. Set the `PALANTIR_ROOT_FOLDER` environment variable to point to your projects' realm:
+
+For the Kingdoms of Men (Windows):
+```bash
+set PALANTIR_ROOT_FOLDER=Projects
 ```
-bash export PALANTIR_ROOT_FOLDER=Projects
-``` 
 
-> 💡 Dica: Adicione esta variável ao seu arquivo de perfil (.bashrc, .zshrc ou similar) para torná-la permanente.
-
-## 🎯 Como Usar
-
-O Palantír utiliza um comando simples para abrir seus projetos:
+For the Realms of Elves and Dwarves (Linux/MacOS):
+```bash
+export PALANTIR_ROOT_FOLDER=Projects
 ```
-bash palantir open <nome_da_pasta>
-``` 
 
-Por exemplo:
+> 🧙‍♂️ **Gandalf's Wisdom**: Add this variable to your profile scroll (.bashrc, .zshrc, or similar) to make it permanent.
+
+## ⚔️ How to Wield the Seeing Stone
+
+The Palantír responds to a simple incantation:
+```bash
+palantir open <project-name>
 ```
-bash palantir open meu-projeto
-``` 
 
-O Palantír irá procurar recursivamente pela pasta especificada dentro do diretório definido em `PALANTIR_ROOT_FOLDER` e abrirá o projeto no VSCode quando encontrá-lo.
+For instance, to peer into the realm of your project:
+```bash
+palantir open my-project
+```
 
-## 🎭 Comportamento
+Like the ancient seeing-stones, Palantír will search recursively through the realms defined in `PALANTIR_ROOT_FOLDER` and open your chosen project in VSCode when found.
 
-- O Palantír ignora automaticamente diretórios comuns como `.git`, `node_modules` e `vendor` durante a busca
-- Se o projeto não for encontrado, uma mensagem amigável será exibida
-- Se o VSCode não estiver instalado, você será notificado
+## 🎭 The Magic Within
 
-## 🤝 Contribuindo
+- Much like Gandalf avoiding the paths of the enemy, Palantír automatically ignores common directories like `.git`, `node_modules`, and `vendor`
+- If your project remains hidden, a friendly message shall guide you
+- Should VSCode be missing from your realm, you shall be notified
 
-Sua contribuição será muito bem-vinda! Se você tem uma ideia para melhorar o Palantír:
+## 🤝 Join the Fellowship
 
-1. Faça um Fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+![The Fellowship](https://raw.githubusercontent.com/DevMatheusSilva/palantir/main/.github/assets/fellowship.jpg)
 
-## 🐛 Encontrou um bug?
+Your aid in improving the Palantír shall be most welcome! To join our fellowship:
 
-Se você encontrar algum problema, por favor abra uma issue descrevendo o problema encontrado. Não se esqueça de incluir os passos para reproduzir o erro e qual comportamento você esperava.
+1. Fork the sacred repository
+2. Create a branch for your quest (`git checkout -b feature/AmazingFeature`)
+3. Commit your enchantments (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the realm (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request to share your wisdom
 
-## 📝 Licença
+## 🐛 Encountered an Orc (Bug)?
 
-Este projeto está licenciado sob os termos da licença MIT.
+Should you encounter any dark forces (bugs) in your journey, please open an issue describing your tale. Remember to include the steps to summon the error and what outcome you expected, so our fellowship may aid you in vanquishing it.
+
+## � License
+
+This artifact is licensed under the terms of the MIT scroll.
 
 ---
 
-*"Mesmo a menor das pessoas pode mudar o curso do futuro." - Galadriel*
+![Middle-earth Map](https://raw.githubusercontent.com/DevMatheusSilva/palantir/main/.github/assets/map.jpg)
+
+*"Even the smallest person can change the course of the future." - Galadriel*
