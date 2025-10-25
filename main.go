@@ -2,17 +2,20 @@ package main
 
 import (
 	"fmt"
-	"github.com/DevMatheusSilva/palantir/pkg/folder"
 	"log"
 	"os"
 	"path/filepath"
 	"runtime/debug"
+
+	"github.com/DevMatheusSilva/palantir/pkg/folder"
 )
 
 func main() {
-	if len(os.Args) < 3 {
+	if len(os.Args) < 2 {
 		printUsageAndExit()
 	}
+
+	command := os.Args[1]
 
 	rootFolder := os.Getenv("PALANTIR_ROOT_FOLDER")
 	if rootFolder == "" {
@@ -23,12 +26,22 @@ func main() {
 
 	baseFolder := filepath.Join(homeDir, rootFolder)
 
-	command := os.Args[1]
-
 	switch command {
 	case "open":
+		if len(os.Args) < 3 {
+			printUsageAndExit()
+		}
+
 		folderName := os.Args[2]
 		if err := folder.OpenFolderProject(folderName, baseFolder); err != nil {
+			log.Fatalf("The Ring has betrayed us! %v", err)
+		}
+	case "list":
+		if len(os.Args) < 2 {
+			printUsageAndExit()
+		}
+
+		if err := folder.ListFolders(baseFolder); err != nil {
 			log.Fatalf("The Ring has betrayed us! %v", err)
 		}
 	default:
