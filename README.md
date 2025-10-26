@@ -44,9 +44,11 @@ sudo ln -s $GOPATH/bin/palantir /usr/local/bin/palantir
 
 ## 🗝️ Configuration
 
-Just as the Palantíri needed proper alignment to function, you must configure the sacred path:
+Just as the Palantíri needed proper alignment to function, you must configure the sacred paths:
 
-1. Set the `PALANTIR_ROOT_FOLDER` environment variable to point to your projects' realm:
+### Required Environment Variables
+
+1. **PALANTIR_ROOT_FOLDER** - Set this to point to your projects' realm:
 
 For the Kingdoms of Men (Windows):
 ```bash
@@ -58,11 +60,48 @@ For the Realms of Elves and Dwarves (Linux/MacOS):
 export PALANTIR_ROOT_FOLDER=Projects
 ```
 
-> 🧙‍♂️ **Gandalf's Wisdom**: Add this variable to your profile scroll (.bashrc, .zshrc, or similar) to make it permanent.
+2. **PALANTIR_PROJECTS_DEPTH** - Define how deep the Seeing Stone should gaze to find your projects:
+
+For the Kingdoms of Men (Windows):
+```bash
+set PALANTIR_PROJECTS_DEPTH=1
+```
+
+For the Realms of Elves and Dwarves (Linux/MacOS):
+```bash
+export PALANTIR_PROJECTS_DEPTH=1
+```
+
+> 🧙‍♂️ **Gandalf's Wisdom**: 
+> - Add these variables to your profile scroll (.bashrc, .zshrc, or similar) to make them permanent.
+> - The depth value indicates how many levels deep your projects are from the root folder.
+>   - `PALANTIR_PROJECTS_DEPTH=1` means projects are directly inside the root folder (e.g., `~/Projects/my-project`)
+>   - `PALANTIR_PROJECTS_DEPTH=2` means one level deeper (e.g., `~/Projects/work/my-project`)
+
+### Example Configuration
+
+If your projects are organized like this:
+```
+~/Projects/
+  ├── personal/
+  │   ├── website/
+  │   └── blog/
+  └── work/
+      ├── api/
+      └── frontend/
+```
+
+Then set:
+```bash
+export PALANTIR_ROOT_FOLDER=Projects
+export PALANTIR_PROJECTS_DEPTH=2
+```
 
 ## ⚔️ How to Wield the Seeing Stone
 
-The Palantír responds to a simple incantation:
+The Palantír responds to simple incantations:
+
+### Open a Project
 ```bash
 palantir open <project-name>
 ```
@@ -72,7 +111,14 @@ For instance, to peer into the realm of your project:
 palantir open my-project
 ```
 
-Like the ancient seeing-stones, Palantír will search recursively through the realms defined in `PALANTIR_ROOT_FOLDER` and open your chosen project in VSCode when found.
+### List All Projects
+```bash
+palantir list
+```
+
+This command reveals all projects within your configured realm, respecting the depth you've set.
+
+Like the ancient seeing-stones, Palantír will search through the realms defined in `PALANTIR_ROOT_FOLDER` at the depth specified in `PALANTIR_PROJECTS_DEPTH` and open your chosen project in VSCode when found.
 
 ## 🎭 The Magic Within
 

@@ -19,7 +19,7 @@ func main() {
 
 	rootFolder := os.Getenv("PALANTIR_ROOT_FOLDER")
 	if rootFolder == "" {
-		log.Fatal("By the power of the Istari! The Palantír requires its sacred environment path (PALANTIR_ROOT_FOLDER) before you may gaze into its depths")
+		log.Fatal("The Seeing Stone requires alignment! Set PALANTIR_ROOT_FOLDER to gaze upon your realms")
 	}
 
 	homeDir := changeToHomeFolder()
@@ -34,7 +34,7 @@ func main() {
 
 		folderName := os.Args[2]
 		if err := folder.OpenFolderProject(folderName, baseFolder); err != nil {
-			log.Fatalf("The Ring has betrayed us! %v", err)
+			log.Fatalf("The vision has failed! %v", err)
 		}
 	case "list":
 		if len(os.Args) < 2 {
@@ -42,7 +42,7 @@ func main() {
 		}
 
 		if err := folder.ListFolders(baseFolder); err != nil {
-			log.Fatalf("The Ring has betrayed us! %v", err)
+			log.Fatalf("The Seeing Stone grows dark! %v", err)
 		}
 	default:
 		printUsageAndExit()
@@ -51,12 +51,20 @@ func main() {
 
 func printUsageAndExit() {
 	fmt.Println(`
-    One Command to rule them all,
-    One Path to find them,
-    One Script to bring them all,
-    and in the terminal bind them.
+    🔮 The Palantír - Seeing Stone of Code 🔮
 
-    Usage: palantir <command> <folder_name>
+    "Far-sighted it was, and its gaze pierced through shadow and distance"
+
+    Commands:
+      palantir open <project-name>    Peer into a realm and open it in VS Code
+      palantir list                   Reveal all realms within your domain
+
+    Required Environment Variables:
+      PALANTIR_ROOT_FOLDER      The root path where your projects dwell
+      PALANTIR_PROJECTS_DEPTH   The depth level where projects are found (e.g., 1, 2, 3)
+
+    For detailed configuration and usage instructions, consult the sacred scrolls:
+    📜 https://github.com/DevMatheusSilva/palantir/blob/main/README.md
     `)
 	os.Exit(1)
 }
@@ -64,7 +72,7 @@ func printUsageAndExit() {
 func changeToHomeFolder() string {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatalf("The paths are blocked! Like the Mines of Moria: %v\nTrace of shadow and flame:\n%s",
+		log.Fatalf("The path to your home is obscured by shadow and flame: %v\nTrace:\n%s",
 			err, debug.Stack())
 	}
 
