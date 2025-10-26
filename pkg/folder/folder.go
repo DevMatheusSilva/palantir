@@ -14,17 +14,17 @@ import (
 func OpenFolderProject(folderName string, baseFolder string) error {
 	projectFolderPath, err := findProjectFolder(folderName, baseFolder)
 	if err != nil {
-		return errors.Wrap(err, "The quest to find the project folder has failed!")
+		return errors.Wrap(err, "The Palantír grows dim... the vision fades")
 	}
 
 	path, err := exec.LookPath("code")
 	if err != nil {
-		return errors.Wrap(err, "Alas! The ancient scrolls speak of VS Code, but it cannot be found in the paths of your realm")
+		return errors.Wrap(err, "The Seeing Stone reveals no path to VS Code in your realm")
 	}
 
 	cmd := exec.Command(path, projectFolderPath)
 	if err := cmd.Run(); err != nil {
-		return errors.Wrapf(err, "The gates of VS Code remain sealed at %s. Even speaking 'mellon' would not work", projectFolderPath)
+		return errors.Wrapf(err, "The gates of VS Code remain closed for %s... even speaking 'mellon' would not open them", projectFolderPath)
 	}
 
 	return nil
@@ -35,7 +35,7 @@ func findProjectFolder(folderName string, baseFolder string) (string, error) {
 
 	err := filepath.WalkDir(baseFolder, func(path string, info os.DirEntry, err error) error {
 		if err != nil {
-			return errors.Wrapf(err, "The path %s is guarded by dark forces", path)
+			return errors.Wrapf(err, "The Seeing Stone cannot pierce the shadows at %s", path)
 		}
 
 		if err := verifyIgnoredFolder(info); err != nil {
@@ -51,14 +51,14 @@ func findProjectFolder(folderName string, baseFolder string) (string, error) {
 	})
 
 	if err != nil {
-		return "", errors.Wrapf(err, "The search party has failed! Could not locate %s in the realm of %s", folderName, baseFolder)
+		return "", errors.Wrapf(err, "The Palantír's gaze failed to find %s within %s", folderName, baseFolder)
 	}
 
 	if projectPath == "" {
-		return "", errors.Errorf("Not even the eyes of Legolas could find %s in the lands of %s", folderName, baseFolder)
+		return "", errors.Errorf("The Seeing Stone reveals no trace of %s in the lands of %s", folderName, baseFolder)
 	}
 
-	log.Printf("By the light of Eärendil! Project found at: %s\nSummoning the editor...", projectPath)
+	log.Printf("The Palantír has revealed your project! Found at: %s\nOpening the gates to your realm...", projectPath)
 
 	return projectPath, nil
 }
@@ -68,7 +68,7 @@ func ListFolders(baseFolder string) error {
 
 	err := filepath.WalkDir(baseFolder, func(path string, info os.DirEntry, err error) error {
 		if err != nil {
-			return errors.Wrapf(err, "The path %s is guarded by dark forces", path)
+			return errors.Wrapf(err, "The Seeing Stone cannot pierce the shadows at %s", path)
 		}
 
 		if err := verifyIgnoredFolder(info); err != nil {
@@ -88,16 +88,16 @@ func ListFolders(baseFolder string) error {
 	})
 
 	if err != nil {
-		return errors.Wrapf(err, "The search party has failed! Could not list folders in the realm of %s", baseFolder)
+		return errors.Wrapf(err, "The Palantír's vision is clouded... could not survey the realm of %s", baseFolder)
 	}
 
 	if len(folders) == 0 {
-		return errors.New("Even the Palantír sees no projects in this land.")
+		return errors.New("The Seeing Stone gazes far and wide, yet no projects appear in its vision")
 	}
 
-	log.Println("Legolas elf eyes saw the following projects being taken to Isengard:")
+	log.Println("The Palantír reveals the following realms in your domain:")
 	for _, folder := range folders {
-		log.Printf("- %s\n", folder)
+		log.Printf("  🔮 %s\n", folder)
 	}
 
 	return nil
