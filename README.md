@@ -6,7 +6,7 @@
 
 Palantír is a mystical tool forged in the depths of Golang, empowering you to swiftly open your projects in VSCode through the terminal, much like the ancient seeing-stones of Middle-earth guided the wise.
 
-## � Prerequisites
+## 📄 Prerequisites
 
 Before embarking on your journey, ensure you have these artifacts in your possession:
 
@@ -142,7 +142,7 @@ Your aid in improving the Palantír shall be most welcome! To join our fellowshi
 
 Should you encounter any dark forces (bugs) in your journey, please open an issue describing your tale. Remember to include the steps to summon the error and what outcome you expected, so our fellowship may aid you in vanquishing it.
 
-## � License
+## 📖 License
 
 This artifact is licensed under the terms of the MIT scroll.
 
