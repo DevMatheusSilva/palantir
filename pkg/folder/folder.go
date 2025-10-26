@@ -97,7 +97,7 @@ func ListFolders(baseFolder string) error {
 
 	log.Println("The Palantír reveals the following realms in your domain:")
 	for _, folder := range folders {
-		log.Printf("  🔮 %s\n", folder)
+		log.Printf("\t%s\n", folder)
 	}
 
 	return nil
