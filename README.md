@@ -15,7 +15,30 @@ Before embarking on your journey, ensure you have these artifacts in your posses
 
 ## 🌟 Installation
 
-### The Path of the Wise
+### Quick Installation (Recommended)
+
+The swiftest path to wield the Seeing Stone:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/DevMatheusSilva/palantir/main/install.sh | bash
+```
+
+Or if you prefer `wget`:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/DevMatheusSilva/palantir/main/install.sh | bash
+```
+
+The script will:
+- ✓ Verify Go and VSCode are installed
+- ✓ Clone the repository
+- ✓ Build the binary
+- ✓ Install to `/usr/local/bin`
+- ✓ Provide configuration instructions
+
+### Manual Installation (The Path of the Wise)
+
+If you prefer to walk the ancient paths yourself:
 
 1. First, summon the repository from the depths of GitHub:
 ```bash
